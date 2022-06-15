@@ -50,3 +50,28 @@ activities.addEventListener('change', (event) => {
   }
   costElement.innerHTML = `Total: $${totalCost}`;
 });
+
+// ALLOWS USERS TO SELECT A PAYMENT OPTION
+const paymentOptions = document.getElementById('payment');
+const creditCard = document.getElementById('credit-card');
+const paypal = document.getElementById('paypal');
+const bitCoin = document.getElementById('bitcoin');
+
+paypal.style.display = 'none';
+bitCoin.style.display = 'none';
+
+paymentOptions.addEventListener('change', (event) => {
+  if (event.target.value === 'credit-card') {
+    creditCard.style.display = 'block';
+    paypal.style.display = 'none';
+    bitCoin.style.display = 'none';
+  } else if (event.target.value === 'paypal') {
+    paypal.style.display = 'block';
+    creditCard.style.display = 'none';
+    bitCoin.style.display = 'none';
+  } else if (event.target.value === 'bitcoin') {
+    bitCoin.style.display = 'block';
+    paypal.style.display = 'none';
+    creditCard.style.display = 'none';
+  }
+});
