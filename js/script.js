@@ -33,3 +33,20 @@ designList.addEventListener('change', (event) => {
     }
   });
 });
+
+// TOTALS COST OF ACTIVITIES
+const activities = document.getElementById('activities');
+const costElement = document.getElementById('activities-cost');
+
+let totalCost = 0;
+
+activities.addEventListener('change', (event) => {
+  if (event.target.checked) {
+    totalCost = totalCost + +event.target.getAttribute('data-cost');
+    console.log(totalCost);
+  } else if (event.target.checked === false) {
+    totalCost = totalCost - +event.target.getAttribute('data-cost');
+    console.log(totalCost);
+  }
+  costElement.innerHTML = `Total: $${totalCost}`;
+});
