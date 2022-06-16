@@ -75,3 +75,51 @@ paymentOptions.addEventListener('change', (event) => {
     creditCard.style.display = 'none';
   }
 });
+
+// FORM VALIDATION
+const form = document.querySelector('form');
+
+const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('email');
+
+const creditInput = document.getElementById('cc-num');
+const zipInput = document.getElementById('zip');
+const cvvInput = document.getElementById('cvv');
+
+form.addEventListener('submit', (event) => {
+
+  // Function to Check the Validity of a Section
+  function checkField(field, regexp) {
+    const input = field.value;
+    const valid = regexp.test(input);
+
+    if (valid) {
+      field.parentElement.classList.add('valid');
+      field.parentElement.classList.remove('not-valid');
+      field.parentElement.lastElementChild.style.display = 'none';
+    } else {
+      event.preventDefault();
+      field.parentElement.classList.add('not-valid');
+      field.parentElement.classList.remove('valid');
+      field.parentElement.lastElementChild.style.display = 'block';
+    }
+  }
+
+  // Basic Info Section
+  checkField(nameInput, /^.+$/);
+  checkField(emailInput, /^[^@]+@[^@.]+\.[a-z]+/);
+
+  // Activities Section
+  if (totalCost === 0) {
+    activities.classList.add('not-valid');
+    activities.classList.remove('valid');
+  } else {
+    activities.classList.add('valid');
+    activities.classList.remove('not-valid');
+  }
+
+  // Payment Section
+    checkField(creditInput, /^\d{13,16}$/);
+    checkField(zipInput, /^\d{5}$/);
+    checkField(cvvInput, /^\d{3}$/);
+});
