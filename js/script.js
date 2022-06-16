@@ -1,6 +1,20 @@
 // FOCUS ON FIRST FIELD BY DEFAULT
 const defaultFocus = document.getElementById('name').focus();
 
+// FOCUS STATE ON ACTIVITY CHECKBOXES
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+checkboxes.forEach((checkbox, i) => {
+  checkbox.addEventListener('focus', (event) => {
+    event.target.parentElement.classList.add('focus');
+  });
+
+  checkbox.addEventListener('blur', (event) => {
+    event.target.parentElement.classList.remove('focus');
+  });
+});
+
+
 // DISPLAYS 'OTHER' JOB ROLE INPUT
 const jobRoles = document.getElementById('title');
 const otherRole = document.getElementById('other-job-role');
