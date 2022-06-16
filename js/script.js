@@ -48,7 +48,7 @@ designList.addEventListener('change', (event) => {
   });
 });
 
-// TOTALS COST OF ACTIVITIES
+// PREVENTS DOUBLE BOOKING & TOTALS COST OF ACTIVITIES
 const activities = document.getElementById('activities');
 const costElement = document.getElementById('activities-cost');
 
@@ -57,8 +57,32 @@ let totalCost = 0;
 activities.addEventListener('change', (event) => {
   if (event.target.checked) {
     totalCost = totalCost + +event.target.getAttribute('data-cost');
+
+      for( let i = 0; i < checkboxes.length; i++ ) {
+        const dateAndTime = checkboxes[i].getAttribute('data-day-and-time');
+        if (event.target.getAttribute('data-day-and-time') === dateAndTime) {
+          if (event.target.name !== checkboxes[i].name) {
+            checkboxes[i].disabled = true;
+          }
+        } else {
+          checkboxes[i].diabled = false;
+        }
+      }
+
   } else if (event.target.checked === false) {
     totalCost = totalCost - +event.target.getAttribute('data-cost');
+
+    for( let i = 0; i < checkboxes.length; i++ ) {
+      const dateAndTime = checkboxes[i].getAttribute('data-day-and-time');
+      if (event.target.getAttribute('data-day-and-time') === dateAndTime) {
+        if (event.target.name !== checkboxes[i].name) {
+          checkboxes[i].disabled = false;
+        }
+      } else {
+        checkboxes[i].diabled = true;
+      }
+    }
+
   }
   costElement.innerHTML = `Total: $${totalCost}`;
 });
