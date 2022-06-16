@@ -57,10 +57,8 @@ let totalCost = 0;
 activities.addEventListener('change', (event) => {
   if (event.target.checked) {
     totalCost = totalCost + +event.target.getAttribute('data-cost');
-    console.log(totalCost);
   } else if (event.target.checked === false) {
     totalCost = totalCost - +event.target.getAttribute('data-cost');
-    console.log(totalCost);
   }
   costElement.innerHTML = `Total: $${totalCost}`;
 });
@@ -70,6 +68,8 @@ const paymentOptions = document.getElementById('payment');
 const creditCard = document.getElementById('credit-card');
 const paypal = document.getElementById('paypal');
 const bitCoin = document.getElementById('bitcoin');
+
+paymentOptions.value = 'credit-card';
 
 paypal.style.display = 'none';
 bitCoin.style.display = 'none';
