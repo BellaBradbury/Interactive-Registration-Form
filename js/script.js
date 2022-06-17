@@ -114,11 +114,35 @@ paymentOptions.addEventListener('change', (event) => {
   }
 });
 
+// REAL TIME EMAIL VALIDATION
+const emailInput = document.getElementById('email');
+
+const invalidEmail = /^[a-z]+$/;
+const validEmail = /^[^@]+@[^@.]+\.[a-z]+$/;
+
+
+emailInput.addEventListener('keyup', () => {
+  if (emailInput.match(invalidEmail)) {
+    emailInput.parentElement.classList.add('not-valid');
+    emailInput.parentElement.classList.remove('valid');
+    emailInput.parentElement.lastElementChild.innerHTML = 'Email must have a domain name.';
+
+  } else if (emailInput.match(validEmail)) {
+    emailInput.parentElement.classList.add('valid');
+    emailInput.parentElement.classList.remove('not-valid');
+    emailInput.parentElement.lastElementChild.style.display = 'none';
+  }
+  else {
+    emailInput.parentElement.classList.add('not-valid');
+    emailInput.parentElement.classList.remove('valid');
+    emailInput.parentElement.lastElementChild.style.display = 'block';
+  }
+});
+
 // FORM VALIDATION
 const form = document.querySelector('form');
 
 const nameInput = document.getElementById('name');
-const emailInput = document.getElementById('email');
 
 const creditInput = document.getElementById('cc-num');
 const zipInput = document.getElementById('zip');
