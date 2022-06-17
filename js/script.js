@@ -126,13 +126,11 @@ emailInput.addEventListener('keyup', () => {
     emailInput.parentElement.classList.add('not-valid');
     emailInput.parentElement.classList.remove('valid');
     emailInput.parentElement.lastElementChild.innerHTML = 'Email must have a domain name.';
-
   } else if (emailInput.match(validEmail)) {
     emailInput.parentElement.classList.add('valid');
     emailInput.parentElement.classList.remove('not-valid');
     emailInput.parentElement.lastElementChild.style.display = 'none';
-  }
-  else {
+  } else {
     emailInput.parentElement.classList.add('not-valid');
     emailInput.parentElement.classList.remove('valid');
     emailInput.parentElement.lastElementChild.style.display = 'block';
