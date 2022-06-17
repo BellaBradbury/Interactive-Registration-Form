@@ -117,24 +117,25 @@ paymentOptions.addEventListener('change', (event) => {
 // REAL TIME EMAIL VALIDATION
 const emailInput = document.getElementById('email');
 
-const invalidEmail = /^[a-z]+$/;
-const validEmail = /^[^@]+@[^@.]+\.[a-z]+$/;
-
+function emailValidator() {
+  const emailValue = emailInput.value;
+  const validEmail = /^[^@]+@[^@.]+\.[a-z]+$/.test(emailValue);
+  return validEmail;
+}
 
 emailInput.addEventListener('keyup', () => {
-  if (emailInput.match(invalidEmail)) {
-    emailInput.parentElement.classList.add('not-valid');
-    emailInput.parentElement.classList.remove('valid');
-    emailInput.parentElement.lastElementChild.innerHTML = 'Email must have a domain name.';
-  } else if (emailInput.match(validEmail)) {
-    emailInput.parentElement.classList.add('valid');
-    emailInput.parentElement.classList.remove('not-valid');
-    emailInput.parentElement.lastElementChild.style.display = 'none';
-  } else {
+  if (!emailValidator()) {
     emailInput.parentElement.classList.add('not-valid');
     emailInput.parentElement.classList.remove('valid');
     emailInput.parentElement.lastElementChild.style.display = 'block';
+    emailInput.parentElement.lastElementChild.innerHTML = 'Email must have a domain name.';
   }
+  else {
+    emailInput.parentElement.classList.add('valid');
+    emailInput.parentElement.classList.remove('not-valid');
+    emailInput.parentElement.lastElementChild.style.display = 'none';
+  }
+
 });
 
 // FORM VALIDATION
