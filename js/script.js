@@ -114,7 +114,7 @@ paymentOptions.addEventListener('change', (event) => {
   }
 });
 
-// REAL TIME EMAIL VALIDATION
+// EMAIL VALIDATION 'HELPER'
 const emailInput = document.getElementById('email');
 
 function emailValidator() {
@@ -122,21 +122,6 @@ function emailValidator() {
   const validEmail = /^[^@]+@[^@.]+\.[a-z]+$/.test(emailValue);
   return validEmail;
 }
-
-emailInput.addEventListener('keyup', () => {
-  if (!emailValidator()) {
-    emailInput.parentElement.classList.add('not-valid');
-    emailInput.parentElement.classList.remove('valid');
-    emailInput.parentElement.lastElementChild.style.display = 'block';
-    emailInput.parentElement.lastElementChild.innerHTML = 'Email must have a domain name.';
-  }
-  else {
-    emailInput.parentElement.classList.add('valid');
-    emailInput.parentElement.classList.remove('not-valid');
-    emailInput.parentElement.lastElementChild.style.display = 'none';
-  }
-
-});
 
 // FORM VALIDATION
 const form = document.querySelector('form');
@@ -168,7 +153,23 @@ form.addEventListener('submit', (event) => {
 
   // Basic Info Section
   checkField(nameInput, /^.+$/);
-  checkField(emailInput, /^[^@]+@[^@.]+\.[a-z]+/);
+  if (emailValidator()) {
+      emailInput.parentElement.classList.add('valid');
+      emailInput.parentElement.classList.remove('not-valid');
+      emailInput.parentElement.lastElementChild.style.display = 'none';
+    } else {
+      const emailAt = '@';
+
+      if (!emailValue.includes(emailAt)) {
+        emailInput.parentElement.lastElementChild.innerHTML = 'Email must contain one @.';
+      }
+
+      event.preventDefault();
+      emailInput.parentElement.classList.add('not-valid');
+      emailInput.parentElement.classList.remove('valid');
+      emailInput.parentElement.lastElementChild.style.display = 'block';
+    }
+  // checkField(emailInput, /^[^@]+@[^@.]+\.[a-z]+/);
 
   // Activities Section
   if (totalCost === 0) {
@@ -183,4 +184,17 @@ form.addEventListener('submit', (event) => {
     checkField(creditInput, /^\d{13,16}$/);
     checkField(zipInput, /^\d{5}$/);
     checkField(cvvInput, /^\d{3}$/);
+});
+
+// REAL TIME EMAIL VALIDATION
+emailInput.addEventListener('keyup', () => {
+  if (emailValidator()) {
+    emailInput.parentElement.classList.add('valid');
+    emailInput.parentElement.classList.remove('not-valid');
+    emailInput.parentElement.lastElementChild.style.display = 'none';
+  } else {
+    emailInput.parentElement.classList.add('not-valid');
+    emailInput.parentElement.classList.remove('valid');
+    emailInput.parentElement.lastElementChild.style.display = 'block';
+  }
 });
