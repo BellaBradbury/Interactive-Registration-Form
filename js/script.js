@@ -117,12 +117,6 @@ paymentOptions.addEventListener('change', (event) => {
 // EMAIL VALIDATION 'HELPER'
 const emailInput = document.getElementById('email');
 
-function emailValidator() {
-  const emailValue = emailInput.value;
-  const validEmail = /^[^@]+@[^@.]+\.[a-z]+$/.test(emailValue);
-  return validEmail;
-}
-
 // FORM VALIDATION
 const form = document.querySelector('form');
 
@@ -160,7 +154,7 @@ form.addEventListener('submit', (event) => {
     } else {
       const emailAt = '@';
 
-      if (!emailValue.includes(emailAt)) {
+      if (!emailInput.value.includes(emailAt)) {
         emailInput.parentElement.lastElementChild.innerHTML = 'Email must contain one @.';
       }
 
@@ -186,6 +180,12 @@ form.addEventListener('submit', (event) => {
     checkField(cvvInput, /^\d{3}$/);
 });
 
+function emailValidator() {
+  const emailValue = emailInput.value;
+  const validEmail = emailInput.value.includes(emailAt);
+  return validEmail;
+}
+
 // REAL TIME EMAIL VALIDATION
 emailInput.addEventListener('keyup', () => {
   if (emailValidator()) {
@@ -196,5 +196,6 @@ emailInput.addEventListener('keyup', () => {
     emailInput.parentElement.classList.add('not-valid');
     emailInput.parentElement.classList.remove('valid');
     emailInput.parentElement.lastElementChild.style.display = 'block';
+    emailInput.parentElement.lastElementChild.innerHTML = 'Email must contain one @.';
   }
 });
