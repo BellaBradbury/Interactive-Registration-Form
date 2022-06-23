@@ -116,6 +116,13 @@ paymentOptions.addEventListener('change', (event) => {
 
 // EMAIL VALIDATION 'HELPER'
 const emailInput = document.getElementById('email');
+const emailAt = '@';
+
+function emailValidator() {
+  const emailValue = emailInput.value;
+  const validEmail = /^[^@]+@[^@.]+\.[a-z]+$/.test(emailValue);
+  return validEmail;
+}
 
 // FORM VALIDATION
 const form = document.querySelector('form');
@@ -148,22 +155,21 @@ form.addEventListener('submit', (event) => {
   // Basic Info Section
   checkField(nameInput, /^.+$/);
   if (emailValidator()) {
-      emailInput.parentElement.classList.add('valid');
-      emailInput.parentElement.classList.remove('not-valid');
-      emailInput.parentElement.lastElementChild.style.display = 'none';
-    } else {
-      const emailAt = '@';
+    emailInput.parentElement.classList.add('valid');
+    emailInput.parentElement.classList.remove('not-valid');
+    emailInput.parentElement.lastElementChild.style.display = 'none';
+  } else {
+    event.preventDefault();
+    emailInput.parentElement.classList.add('not-valid');
+    emailInput.parentElement.classList.remove('valid');
+    emailInput.parentElement.lastElementChild.innerHTML = 'Please enter a valid email address';
 
-      if (!emailInput.value.includes(emailAt)) {
-        emailInput.parentElement.lastElementChild.innerHTML = 'Email must contain one @.';
-      }
-
-      event.preventDefault();
-      emailInput.parentElement.classList.add('not-valid');
-      emailInput.parentElement.classList.remove('valid');
-      emailInput.parentElement.lastElementChild.style.display = 'block';
+    if (!emailInput.value.includes(emailAt)) {
+      emailInput.parentElement.lastElementChild.innerHTML = 'Email must contain one @';
     }
-  // checkField(emailInput, /^[^@]+@[^@.]+\.[a-z]+/);
+
+    emailInput.parentElement.lastElementChild.style.display = 'block';
+  }
 
   // Activities Section
   if (totalCost === 0) {
@@ -180,12 +186,6 @@ form.addEventListener('submit', (event) => {
     checkField(cvvInput, /^\d{3}$/);
 });
 
-function emailValidator() {
-  const emailValue = emailInput.value;
-  const validEmail = emailInput.value.includes(emailAt);
-  return validEmail;
-}
-
 // REAL TIME EMAIL VALIDATION
 emailInput.addEventListener('keyup', () => {
   if (emailValidator()) {
@@ -193,9 +193,15 @@ emailInput.addEventListener('keyup', () => {
     emailInput.parentElement.classList.remove('not-valid');
     emailInput.parentElement.lastElementChild.style.display = 'none';
   } else {
+    event.preventDefault();
     emailInput.parentElement.classList.add('not-valid');
     emailInput.parentElement.classList.remove('valid');
+    emailInput.parentElement.lastElementChild.innerHTML = 'Please enter a valid email address';
+
+    if (!emailInput.value.includes(emailAt)) {
+      emailInput.parentElement.lastElementChild.innerHTML = 'Email must contain one @';
+    }
+
     emailInput.parentElement.lastElementChild.style.display = 'block';
-    emailInput.parentElement.lastElementChild.innerHTML = 'Email must contain one @.';
   }
 });
