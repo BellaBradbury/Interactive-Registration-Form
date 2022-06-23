@@ -38,7 +38,6 @@ colorList.disabled = true;
 
 designList.addEventListener('change', (event) => {
   colorList.disabled = false;
-  colorList.value = colorList.firstChild;
 
   colors.forEach( color => {
     if (designList.value === color.getAttribute('data-theme')) {
@@ -46,6 +45,8 @@ designList.addEventListener('change', (event) => {
     } else {
       color.style.display = 'none';
     }
+
+    colors[0].selected = true;
   });
 });
 
