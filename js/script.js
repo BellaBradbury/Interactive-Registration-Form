@@ -38,9 +38,10 @@ colorList.disabled = true;
 
 designList.addEventListener('change', (event) => {
   colorList.disabled = false;
+  colorList.value = colorList.firstChild;
 
   colors.forEach( color => {
-    if (event.target.value === color.getAttribute('data-theme')) {
+    if (designList.value === color.getAttribute('data-theme')) {
       color.style.display = 'block';
     } else {
       color.style.display = 'none';
@@ -181,9 +182,14 @@ form.addEventListener('submit', (event) => {
   }
 
   // Payment Section
+  if (paymentOptions.value === 'credit-card') {
     checkField(creditInput, /^\d{13,16}$/);
     checkField(zipInput, /^\d{5}$/);
     checkField(cvvInput, /^\d{3}$/);
+  } else {
+    activities.classList.add('valid');
+    activities.classList.remove('not-valid');
+  }
 });
 
 // REAL TIME EMAIL VALIDATION
