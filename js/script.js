@@ -46,7 +46,11 @@ designList.addEventListener('change', (event) => {
       color.style.display = 'none';
     }
 
-    colors[0].selected = true;
+    if (designList.value === 'js puns') {
+      colors[1].selected = true;
+    } else if (designList.value === 'heart js') {
+      colors[4].selected = true;
+    }
   });
 });
 
