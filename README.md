@@ -1,5 +1,5 @@
 # Program An Interactive Registration Form
-Team Treehouse - Front End Web Development TechDegree - Project 7
+Team Treehouse - Web Development TechDegree - Project 7
 
 Submitted 6/24/22 ***EXCEEDS EXPECTATIONS***
 
