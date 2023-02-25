@@ -1,7 +1,9 @@
 # Program An Interactive Registration Form
 Team Treehouse - Web Development TechDegree - Project 7
-
-Submitted 6/24/22 ***EXCEEDS EXPECTATIONS***
+ - Submitted 6/24/22 ***EXCEEDS EXPECTATIONS***
+ 
+Team Treehouse - Full Stack JavaScript TechDegree - Project 3
+ - Submitted 1/20/23 ***EXCEEDS EXPECTATIONS***
 
 -SKILLS USED-
 * JavaScript
