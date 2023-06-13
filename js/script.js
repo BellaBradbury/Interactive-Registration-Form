@@ -60,36 +60,30 @@ const costElement = document.getElementById('activities-cost');
 
 let totalCost = 0;
 
-activities.addEventListener('change', (event) => {
-  if (event.target.checked) {
-    totalCost = totalCost + +event.target.getAttribute('data-cost');
-
-      for(const element of checkboxes) {
-        const dateAndTime = element.getAttribute('data-day-and-time');
-        if (event.target.getAttribute('data-day-and-time') === dateAndTime) {
-          if (event.target.name !== element.name) {
-            element.disabled = true;
-          }
-        } else {
-          element.diabled = false;
-        }
-      }
-
-  } else if (event.target.checked === false) {
-    totalCost = totalCost - +event.target.getAttribute('data-cost');
-
-    for(const element of checkboxes) {
-      const dateAndTime = element.getAttribute('data-day-and-time');
-      if (event.target.getAttribute('data-day-and-time') === dateAndTime) {
-        if (event.target.name !== element.name) {
-          element.disabled = false;
-        }
-      } else {
-        element.diabled = true;
+function handleActivities(e, status) {
+  for(const element of checkboxes) {
+    const dateAndTime = element.getAttribute('data-day-and-time');
+    if (e.target.getAttribute('data-day-and-time') === dateAndTime) {
+      if (e.target.name !== element.name) {
+        element.disabled = status;
       }
     }
-
   }
+}
+
+activities.addEventListener('change', (event) => {
+  const eventCost = +event.target.getAttribute('data-cost');
+
+  if (event.target.checked) {
+    totalCost = totalCost + eventCost;
+
+    handleActivities(event, true);
+  } else if (!event.target.checked) {
+    totalCost = totalCost - eventCost;
+
+    handleActivities(event, false);
+  }
+
   costElement.innerHTML = `Total: $${totalCost}`;
 });
 
