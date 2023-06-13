@@ -64,28 +64,28 @@ activities.addEventListener('change', (event) => {
   if (event.target.checked) {
     totalCost = totalCost + +event.target.getAttribute('data-cost');
 
-      for( let i = 0; i < checkboxes.length; i++ ) {
-        const dateAndTime = checkboxes[i].getAttribute('data-day-and-time');
+      for(const element of checkboxes) {
+        const dateAndTime = element.getAttribute('data-day-and-time');
         if (event.target.getAttribute('data-day-and-time') === dateAndTime) {
-          if (event.target.name !== checkboxes[i].name) {
-            checkboxes[i].disabled = true;
+          if (event.target.name !== element.name) {
+            element.disabled = true;
           }
         } else {
-          checkboxes[i].diabled = false;
+          element.diabled = false;
         }
       }
 
   } else if (event.target.checked === false) {
     totalCost = totalCost - +event.target.getAttribute('data-cost');
 
-    for( let i = 0; i < checkboxes.length; i++ ) {
-      const dateAndTime = checkboxes[i].getAttribute('data-day-and-time');
+    for(const element of checkboxes) {
+      const dateAndTime = element.getAttribute('data-day-and-time');
       if (event.target.getAttribute('data-day-and-time') === dateAndTime) {
-        if (event.target.name !== checkboxes[i].name) {
-          checkboxes[i].disabled = false;
+        if (event.target.name !== element.name) {
+          element.disabled = false;
         }
       } else {
-        checkboxes[i].diabled = true;
+        element.diabled = true;
       }
     }
 
