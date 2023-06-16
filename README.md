@@ -25,4 +25,3 @@ EMAIL INPUT INCLUDES REAL TIME VALIDATION AND 2 ERROR MESSAGES:
 
   * ERROR 2 : If there is no @ symbol present in the input it displays
       "Email must contain one @"
-
