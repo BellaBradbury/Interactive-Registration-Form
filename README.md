@@ -1,7 +1,9 @@
 # Program An Interactive Registration Form
 Team Treehouse - Web Development TechDegree - Project 7
-
-Submitted 6/24/22 ***EXCEEDS EXPECTATIONS***
+ - Submitted 6/24/22 ***EXCEEDS EXPECTATIONS***
+ 
+Team Treehouse - Full Stack JavaScript TechDegree - Project 3
+ - Submitted 1/20/23 ***EXCEEDS EXPECTATIONS***
 
 -SKILLS USED-
 * JavaScript
@@ -18,8 +20,8 @@ EMAIL INPUT INCLUDES REAL TIME VALIDATION AND 2 ERROR MESSAGES:
 
   * VALID : email@example.com (No Hint Displayed)
 
-  * DEFAULT ERROR (1) : If an @ symbol is present but doesn't meet valid input
-                            requirement it displays "Email address must be formatted correctly"
+  * DEFAULT ERROR (1) : If an @ symbol is present but doesn't meet valid input requirement it displays 
+      "Email address must be formatted correctly"
 
   * ERROR 2 : If there is no @ symbol present in the input it displays
-                  "Email must contain one @"
+      "Email must contain one @"
